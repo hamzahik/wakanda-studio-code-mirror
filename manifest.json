@@ -1,0 +1,32 @@
+{
+    "extension": 
+    {
+        "name": "codeEditor",
+        "version": "0.0.1",
+        "description": "Code Mirror For Wakanda Studio",
+        "icon": "icon.png",
+        "senders": [
+                    {
+                        "location": "solutionExplorerTreeViewContextMenu", 
+						"menu":	[
+							{ 
+								"actionName": "editFile"
+							}
+						]
+                    }
+        ],
+        "actions": [
+                    {
+                        "name": "editFile",
+                        "title": "Edit File",
+						"shortcut": {
+							"shortcutKey":"yes",
+							"alternateKey":"no",
+							"shiftKey":"yes",
+							"key":"o"
+						}
+                    }
+        ],
+        "lifetime": "action_lifetime"
+    }
+}
