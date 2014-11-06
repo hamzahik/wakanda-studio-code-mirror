@@ -88,6 +88,7 @@ editor.getMode	= function( ) {
 editor.setMode = function( mode ) {
 	
 	editor.setOption( "mode" , mode );
+	editor.setOption( "indentUnit" , 4 );	
 	
 	if ( mode == "htmlmixed" ) {
 	
