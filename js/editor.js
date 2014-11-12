@@ -1,7 +1,47 @@
-
+﻿
 var storage	= {};
+var pref	= {};
 var editor	= {};
+var _File	= function(path){
 
+	return {
+	
+		toString : function(){
+
+			return '<html>\n\t<head>\n\t</head>\n\t<body>\n\t</body>\n</html>';
+		}
+	}
+
+};
+
+var _studio		= {
+
+	extension : {
+	
+		storage : {
+		
+			getItem : function( item ){			
+			
+				switch ( item ) {
+				
+					case 'mode':
+						return 'htmlmixed';
+				
+				}
+				
+			}
+		
+		}
+	
+	},
+	
+	File : _File
+	
+};
+
+var studio	= studio || _studio;
+
+editor.events	= {};
 editor.config	= {};
 
 storage.get	= function( key ) {
@@ -14,6 +54,19 @@ storage.get	= function( key ) {
 storage.set	= function( key , value ) {
 
 	studio.extension.storage.setItem( key , value );
+
+};
+
+pref.get	= function( key ) {
+
+	var value	= studio.extension.getPref( key );
+ 
+	return value;
+};
+
+pref.set	= function( key , value ) {
+
+	studio.extension.setPref( key , value );
 
 };
 
@@ -44,6 +97,8 @@ editor.loadFile = function( ) {
 
 editor.save = function( ) {
 
+	$('#state').text('Saving..');
+
 	var filePath	= storage.get( 'file' );
 	var file		= studio.File( filePath );
 	
@@ -51,11 +106,32 @@ editor.save = function( ) {
 	
 		studio.saveText( editor.cm.getValue( ) , file );
 		
+		editor.events.trigger('onSave');
+		
 	};
+	
+	$('#state').text('Saved');
+	
+	setTimeout(function(){ $('#state').text('OK'); },1000);
 
 };
 
+editor.events.trigger	= function( name , args ) {
+
+	for ( var i in editor.events[ name ] ) {
+	
+		try{
+		
+			editor.events[ name ][ i ].apply(null,args);
+		}catch( e ) {}
+	
+	}
+
+}
+
 editor.init = function( ) {
+
+	editor.events.onSave	= [];
 
 	editor.cm = CodeMirror.fromTextArea( editor.getTextArea() , {
 
@@ -64,8 +140,6 @@ editor.init = function( ) {
 	});
 
 	CodeMirror.modeURL = "lib/codemirror/mode/%N/%N.js";
-
-	editor.setTheme( editor.getTheme() );
 	
 	editor.setMode( editor.getMode() );
 	
@@ -124,11 +198,13 @@ editor.setMode = function( mode ) {
  */
 editor.getTheme = function( ) {
 
-	return 'monokai';
+	return pref.get('theme')||'eclipse';
 	
 };
 
 editor.setTheme = function ( theme ) {
+
+	pref.set('theme',theme);
 
 	editor.setOption( "theme" , theme );
 
