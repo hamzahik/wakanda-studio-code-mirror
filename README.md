@@ -10,6 +10,7 @@ Features
 - Handles `emmet abreviations <http://docs.emmet.io/abbreviations/syntax/>`_ 
 - Good indentation
 - HTML preview ( reloads with every Save )
+- Editor's theme choice
 
 How To
 ======
