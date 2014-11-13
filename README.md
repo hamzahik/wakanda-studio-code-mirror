@@ -7,8 +7,7 @@ Code Mirror based code editor for Wakanda Studio.
 Features
 ========
 
-- Handles emmet abreviations_
-.. _abreviations: http://docs.emmet.io/abbreviations/syntax/
+- Handles emmet abreviations ( http://docs.emmet.io/abbreviations/syntax/ )
 - Good indentation
 - HTML preview ( reloads with every Save )
 - Editor's theme choice
