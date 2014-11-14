@@ -144,7 +144,11 @@ editor.init = function( ) {
 
 	editor.cm = CodeMirror.fromTextArea( editor.getTextArea() , {
 
-		lineNumbers: true
+		lineNumbers: true,
+		keyMap: "sublime",
+		autoCloseBrackets: true,
+		matchBrackets: true,
+		showCursorWhenSelecting: true
 		
 	});
 
