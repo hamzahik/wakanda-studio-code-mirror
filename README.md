@@ -11,6 +11,8 @@ Features
 - Good indentation
 - HTML preview ( reloads with every Save )
 - Editor's theme choice
+- Multi-lines editing ( hold Alt + left mouse button and select the edition scope )
+- JavaScript : Variable name refactoring ( Ctrl + Q )
 
 How To
 ======
@@ -21,8 +23,9 @@ How To
 Shortcuts
 =========
 
-You can use all the usual keyboard shortcuts you are used to, example :
+The following keyboard shortcuts are available:
 
 - Save : Ctrl + S 
 - Undo : Ctrl + Z
 - Redo : Ctrl + Y
+- Change Variable Name : Ctrl + Q
