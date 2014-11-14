@@ -33,6 +33,14 @@ app.controller('Toolbar',[ '$scope' , function( $scope ){
 
 			action : function(item){
 			
+				if ( editor.config.mode != 'htmlmixed' ){
+					
+					alert( 'this is not an HTML file' );
+					
+					return;
+				
+				}
+			
 				if ( item.visible ){
 					$('#preview').hide();
 					$('#c_editor').removeClass('col-md-6 col-sm-6');

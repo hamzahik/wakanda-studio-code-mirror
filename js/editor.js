@@ -131,6 +131,7 @@ editor.events.trigger	= function( name , args ) {
 		try{
 		
 			editor.events[ name ][ i ].apply(null,args);
+			
 		}catch( e ) {}
 	
 	}
@@ -167,6 +168,12 @@ editor.getMode	= function( ) {
 };
 
 editor.setMode = function( mode ) {
+
+	var extraKeys	= {
+	
+		"Ctrl-S": function(cm) { editor.save(cm); }
+		
+	};
 	
 	editor.setOption( "mode" , mode );
 	editor.setOption( "indentUnit" , 4 );	
@@ -183,18 +190,24 @@ editor.setMode = function( mode ) {
 		
 		editor.cm.on("cursorActivity", function(cm) { editor.server.updateArgHints(cm); });
 		
+		var jsExtraKeys	= {
+			"Ctrl-Space": function(cm) { editor.server.complete(cm); },		  
+			"Ctrl-I": function(cm) { editor.server.showType(cm); },
+			"Alt-.": function(cm) { editor.server.jumpToDef(cm); },
+			"Alt-,": function(cm) { editor.server.jumpBack(cm); },
+			"Ctrl-Q": function(cm) { editor.server.rename(cm); },
+			"Ctrl-.": function(cm) { editor.server.selectName(cm); }
+		}
+		
+		for ( var i in jsExtraKeys ) {
+		
+			extraKeys[ i ] = jsExtraKeys[ i ];
+		
+		}
+		
 	};
 	
-	editor.cm.setOption( "extraKeys" , {
-		
-	  "Ctrl-Space": function(cm) { editor.server.complete(cm); },		  
-	  "Ctrl-I": function(cm) { editor.server.showType(cm); },
-	  "Alt-.": function(cm) { editor.server.jumpToDef(cm); },
-	  "Alt-,": function(cm) { editor.server.jumpBack(cm); },
-	  "Ctrl-Q": function(cm) { editor.server.rename(cm); },
-	  "Ctrl-.": function(cm) { editor.server.selectName(cm); },
-	  "Ctrl-S": function(cm) { editor.save(cm); }
-	});
+	editor.cm.setOption( "extraKeys" , extraKeys );
 	
 	CodeMirror.autoLoadMode( editor.cm , mode );
 
