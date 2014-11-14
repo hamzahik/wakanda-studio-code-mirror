@@ -87,12 +87,20 @@ editor.getTextArea = function( ) {
 
 editor.loadFile = function( ) {
 
-	var filePath	= storage.get( 'file' );
-	var file		= studio.File( filePath );
+	var filePath	= storage.get( 'file' ) || pref.get('recent');
 	
-	editor.cm.setValue( file.toString() );
+	if ( filePath ) {
 	
-	editor.cm.markClean();
+		pref.set('recent',filePath);
+	
+		var file		= studio.File( filePath );
+	
+		editor.cm.setValue( file.toString() );
+		
+		editor.cm.markClean();
+	
+	}
+	
 };
 
 editor.save = function( ) {
@@ -144,7 +152,6 @@ editor.init = function( ) {
 	editor.setMode( editor.getMode() );
 	
 	editor.loadFile();
-	
 };
 
 /*
