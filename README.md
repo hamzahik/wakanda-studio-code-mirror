@@ -13,6 +13,7 @@ Features
 - Editor's theme choice
 - Multi-lines editing ( hold Alt + left mouse button and select the edition scope )
 - JavaScript : Variable name refactoring ( Ctrl + Q )
+- Sublimetext keyboard shortcuts( Partially implemented )
 
 How To
 ======
