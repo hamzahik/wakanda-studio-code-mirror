@@ -19,7 +19,7 @@ How To
 ======
 
 - Select a file in the studio's file explorer
-- Hold : Ctrl + Shift + O to open the file
+- Hold : Ctrl + Shift + O on Windows and Command + Shift + O on MAC OS to open the file
 
 Shortcuts
 =========
