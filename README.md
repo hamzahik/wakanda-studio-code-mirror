@@ -24,9 +24,7 @@ How To
 Shortcuts
 =========
 
-The following keyboard shortcuts are available:
+In addition to the native keyboard shortcuts (Undo/Redo..), the following keyboard shortcuts are available:
 
-- Save : Ctrl + S 
-- Undo : Ctrl + Z
-- Redo : Ctrl + Y
+- Save : Ctrl + S
 - Change Variable Name : Ctrl + Q
